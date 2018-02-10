@@ -1,0 +1,13 @@
+h1, p, button, form {
+  font-family: 'Hind', sans-serif;
+}
+
+.jumbotron {
+  background-image: url('../img/metal.jpg');
+  background-position: center bottom;
+  background-size: 100% auto;
+}
+
+.card-header, .modal-header {
+  font-family: 'Crimson Text', serif;
+}
