@@ -1,0 +1,25 @@
+{
+  "name": "mongo-technica",
+  "version": "1.0.0",
+  "description": "An app to scrape Ars Technica articles",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slizbethellis/mongo-technica.git"
+  },
+  "keywords": [
+    "scraper",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "Sarah Ellis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slizbethellis/mongo-technica/issues"
+  },
+  "homepage": "https://github.com/slizbethellis/mongo-technica#readme"
+}
