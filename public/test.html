@@ -3,21 +3,34 @@
   <head>
     <meta charset="UTF-8">
     <title>mongo-technica</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Hind" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="assets/js/app.js"></script>
   </head>
   <body>
     <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid bg-dark">
       <div class="container text-light text-center">
+        <img src="assets/img/mongo-technica.svg" id="mt-logo" class="img-fluid" alt="mongo-technica">
         <h1 class="display-4">mongo-technica</h1>
         <p class="small">MTH-MS1</p>
         <p class="lead">Scrape articles from Ars Technica and comment on them.</p>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-info btn-sm active">
+            <input type="radio" name="options" id="scrape" autocomplete="off" checked> Scrape New Articles
+          </label>
+          <label class="btn btn-secondary btn-sm">
+            <input type="radio" name="options" id="all-articles" autocomplete="off"> All Articles
+          </label>
+          <label class="btn btn-secondary btn-sm">
+            <input type="radio" name="options" id="commented-articles" autocomplete="off"> Articles with Comments
+          </label>
+        </div>
       </div>
     </div>
 
@@ -29,17 +42,25 @@
         </div>
         <div class="card-body bg-light">
           <p class="card-text">Nvidia: \"Strong demand in the cryptocurrency market exceeded our expectations.\"</p>
+          <hr>
+          <p class="card-text article-date text-muted">15 February 2018, 1:45pm</p>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Post notes</h5>
+                  <h5 class="modal-title" id="modal-label">Comments on: <span class="article-title">Article</span></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Notes go here</p>
+                  <p><span class="comment-header">Comment title</span>
+                    <button type="button" class="delete" aria-label="Delete">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </p>
+                  <p class="comment-body">More text here.</p>
+                  <p class="comment-date text-muted">15 February 2018, 1:45pm</p>
                   <hr>
                   <form>
                     <div class="form-group">
@@ -55,7 +76,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Open modal</button>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Comment on article</button>
         </div>
       </div>
     </div>

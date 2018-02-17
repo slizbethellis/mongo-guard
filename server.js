@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var moment = require("moment");
 
 // scraping tools
 var axios = require("axios");
@@ -51,6 +52,7 @@ app.get("/scrape", function(req, res) {
       result.title = $(this).children("a").text();
       result.link = $(this).children("a").attr("href");
       result.summary = $(this).siblings(".excerpt").text();
+      result.postDate = moment($(this).siblings(".byline").children("time").attr("datetime"));
 
       // Create a new Article using the `result` object built from scraping
       db.Article
@@ -79,7 +81,7 @@ app.get("/scrape", function(req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
   db.Article
-    .find({})
+    .find({}, null, { sort: {postDate:-1} })
     .then(function(dbArticle) {
       var hbObject = {
         Articles: dbArticle

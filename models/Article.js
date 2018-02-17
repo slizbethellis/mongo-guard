@@ -17,6 +17,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: false
   },
+  postDate: {
+    type: Date,
+    required: false
+  },
   // `note` is an associate object
   note: {
     type: Schema.Types.ObjectId,

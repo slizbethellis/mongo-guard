@@ -1,5 +1,15 @@
-h1, p, button, form {
+h1, p, button, form, .btn {
   font-family: 'Hind', sans-serif;
+}
+
+.display-4 {
+  font-weight: bold;
+}
+
+.delete {
+  background: none;
+  border: none;
+  float: right;
 }
 
 .jumbotron {
@@ -8,6 +18,37 @@ h1, p, button, form {
   background-size: 100% auto;
 }
 
+.lead {
+  font-weight: 500;
+}
+
+.small {
+  font-weight: 300;
+}
+
+.article-date, .article-title, .comment-date {
+  font-style: italic;
+}
+
+.comment-body {
+  font-size: 0.9rem;
+  margin-top: -0.7rem;
+}
+
+.comment-date {
+  font-size: 0.7rem;
+  margin-top: -0.7rem;
+}
+
+.comment-header {
+  font-weight: bold;
+}
+
 .card-header, .modal-header {
   font-family: 'Crimson Text', serif;
+}
+
+#mt-logo {
+  width: 4rem;
+  padding-bottom: 1rem;
 }

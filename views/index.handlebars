@@ -1,0 +1,68 @@
+<div class="jumbotron jumbotron-fluid bg-dark">
+  <div class="container text-light text-center">
+    <img src="assets/img/mongo-technica.svg" id="mt-logo" class="img-fluid" alt="mongo-technica">
+    <h1 class="display-4">mongo-technica</h1>
+    <p class="small">MTH-MS1</p>
+    <p class="lead">Scrape articles from Ars Technica and comment on them.</p>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-info btn-sm active">
+        <input type="radio" name="options" id="scrape" autocomplete="off" checked> Scrape New Articles
+      </label>
+      <label class="btn btn-secondary btn-sm">
+        <input type="radio" name="options" id="all-articles" autocomplete="off"> All Articles
+      </label>
+      <label class="btn btn-secondary btn-sm">
+        <input type="radio" name="options" id="commented-articles" autocomplete="off"> Articles with Comments
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  {{#each articles}}
+    <!-- Article card -->
+    <div class="card">
+      <div class="card-header bg-secondary">
+        <a href="https://arstechnica.com/tech-policy/2018/02/nvidia-profits-soar-as-cryptocurrency-boom-creates-gpu-shortage/" class="text-light"><h5>Cryptocurrency boom, a problem for gamers, is a bonanza for GPU makers</h5></a>
+      </div>
+      <div class="card-body bg-light">
+        <p class="card-text">Nvidia: \"Strong demand in the cryptocurrency market exceeded our expectations.\"</p>
+        <hr>
+        <p class="card-text article-date text-muted">15 February 2018, 1:45pm</p>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-label">Comments on: <span class="article-title">Article</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><span class="comment-header">Comment title</span>
+                  <button type="button" class="delete" aria-label="Delete">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </p>
+                <p class="comment-body">More text here.</p>
+                <p class="comment-date text-muted">15 February 2018, 1:45pm</p>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Note:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Make note</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Comment on article</button>
+      </div>
+    </div>
+  {{/each}}
+</div>
