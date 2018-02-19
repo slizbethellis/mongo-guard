@@ -6,7 +6,11 @@ var NoteSchema = new Schema({
   // `title` is of type String
   title: String,
   // `body` is of type String
-  body: String
+  body: String,
+  commentDate: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 var Note = mongoose.model("Note", NoteSchema);
