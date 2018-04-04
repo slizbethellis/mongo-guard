@@ -32,33 +32,32 @@ $(function () {
 
   $(".article-button").on("click", function () {
     // Save the id from the p tag
-    var thisId = $(this).attr("data-id");
+    var id = $(this).attr("data-id");
 
     // Now make an ajax call for the Article
     $.ajax({
       method: "GET",
-      url: "/articles/" + thisId
+      url: "/articles/" + id
     })
       // With that done, add the note information to the page
       .done(function (data) {
-        // Reload the page to get the updated list
-        location.reload();
+        location.assign(`/articles/${id}`);
       });
   });
 
-  $(".save-comment").on("submit", function (event) {
+  $(".make-comment").on("submit", function (event) {
     event.preventDefault();
-    var thisId = $(this).attr("data-id");
+    var id = $(this).attr("data-id");
+    var title = $(`#new-title${id}`).val();
+    var body = $(`#new-body${id}`).val();
 
     // Run a POST request to change the note, using what's entered in the inputs
-    $.ajax({
+    $.ajax("/articles/" + id, {
       method: "POST",
-      url: "/articles/" + thisId,
       data: {
-        // Value taken from title input
-        title: $("#new-title").val(),
-        // Value taken from note textarea
-        body: $("#new-body").val()
+        title: title,
+        body: body,
+        article: id
       }
     })
       // With that done
@@ -68,7 +67,21 @@ $(function () {
       });
 
     // Also, remove the values entered in the input and textarea for note entry
-    $("#new-title").val("");
-    $("#new-body").val("");
+    $(`#new-title${id}`).val("");
+    $(`#new-body${id}`).val("");
+  });
+
+  $(".delete").on("click", function () {
+    var id = $(this).attr("data-id");
+    var articleId = location.pathname;
+
+    $.ajax(`${articleId}/deleteNote/${id}`, {
+      method: "POST"
+    })
+      // With that done
+      .done(function (data) {
+        // Reload the page to get the updated list
+        location.reload();
+      });
   });
 });

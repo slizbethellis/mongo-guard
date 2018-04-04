@@ -44,7 +44,7 @@ h1, p, button, form, .btn {
   font-weight: bold;
 }
 
-.card-header, .modal-header {
+.card-header {
   font-family: 'Crimson Text', serif;
 }
 

@@ -21,11 +21,11 @@ var ArticleSchema = new Schema({
     type: Date,
     required: false
   },
-  // `note` is an associate object
-  note: {
+  // `notes` is an associate object
+  notes: [{
     type: Schema.Types.ObjectId,
     ref: "Note"
-  }
+  }]
 });
 
 var Article = mongoose.model("Article", ArticleSchema);

@@ -1,0 +1,85 @@
+<div class="jumbotron jumbotron-fluid bg-dark">
+  <div class="container text-light text-center">
+    <img src="/assets/img/mongo-technica.svg" id="mt-logo" class="img-fluid" alt="mongo-technica">
+    <h1 class="display-4">mongo-technica</h1>
+    <p class="small">MTH-MS1</p>
+    <p class="lead">Scrape articles from Ars Technica and comment on them.</p>
+    <div class="btn-group" aria-label="action-buttons">
+      <button type="button" class="btn btn-info btn-sm active" id="scrape"> Scrape New Articles</button>
+      <button type="button" class="btn btn-secondary btn-sm" id="all-articles"> All Articles</button>
+      <button type="button" class="btn btn-secondary btn-sm" id="commented-articles"> Articles with Comments</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <!-- Article card -->
+  <div class="card">
+    <div class="card-header bg-secondary">
+      <a href="{{Articles.link}}" class="text-light">
+        <h5>{{Articles.title}}</h5>
+      </a>
+    </div>
+    <div class="card-body bg-light">
+      <p class="card-text">{{Articles.summary}}</p>
+      <hr>
+      <p class="card-text article-date text-muted">{{moment Articles.postDate "DD MMMM YYYY, h:mma"}}</p>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        {{#if Articles.notes}} {{#each Articles.notes}}
+        <p>
+          <span class="comment-header">{{title}}</span>
+          <button type="button" class="delete" aria-label="Delete" data-id="{{_id}}">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </p>
+        <p class="comment-body">{{body}}</p>
+        <p class="comment-date text-muted">{{moment commentDate "DD MMMM YYYY, h:mma"}}</p>
+        <hr>{{/each}} {{else}}
+        <p>No comments yet.</p>
+        {{/if}}
+        <form class="make-comment" data-id="{{Articles._id}}">
+          <div class="form-group">
+            <label for="new-title">Title</label>
+            <input type="text" class="form-control" id="new-title{{Articles._id}}" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <label for="new-body" class="col-form-label">Your Comment:</label>
+            <textarea class="form-control" id="new-body{{Articles._id}}"></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger">Make comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Begin comments collapse -->
+<div class="collapse" id="collapseComments{{_id}}">
+  <div class="card">
+    <div class="card-body">
+      {{#each Article.notes}}
+      <p>
+        <span class="comment-header">{{Note.title}}</span>
+        <button type="button" class="delete" aria-label="Delete" data-id="{{Note._id}}">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </p>
+      <p class="comment-body">{{Note.body}}</p>
+      <p class="comment-date text-muted">{{Note.commentDate}}</p>
+      <hr>{{/each}}
+      <form class="make-comment" data-id="{{_id}}">
+        <div class="form-group">
+          <label for="new-title">Title</label>
+          <input type="text" class="form-control" id="new-title{{_id}}" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <label for="new-body" class="col-form-label">Your Comment:</label>
+          <textarea class="form-control" id="new-body{{_id}}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Make comment</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End comments collapse -->

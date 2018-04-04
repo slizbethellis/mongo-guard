@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid bg-dark">
   <div class="container text-light text-center">
-    <img src="assets/img/mongo-technica.svg" id="mt-logo" class="img-fluid" alt="mongo-technica">
+    <img src="/assets/img/mongo-technica.svg" id="mt-logo" class="img-fluid" alt="mongo-technica">
     <h1 class="display-4">mongo-technica</h1>
     <p class="small">MTH-MS1</p>
     <p class="lead">Scrape articles from Ars Technica and comment on them.</p>
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="container-fluid" id="article-div">
+<div class="container-fluid">
   {{#each Articles}}
   <!-- Article card -->
   <div class="card">
@@ -25,49 +25,7 @@
       <p class="card-text">{{summary}}</p>
       <hr>
       <p class="card-text article-date text-muted">{{moment postDate "DD MMMM YYYY, h:mma"}}</p>
-      <button type="button" class="btn btn-warning article-button" data-toggle="modal" data-id="{{_id}}" data-target="#commentsModal{{_id}}">Comment on article</button>
-      <!-- Begin comments modal -->
-      <div class="modal fade" id="commentsModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-label">Comments on:
-                <span class="article-title">{{title}}</span>
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{#each note}}
-              <p>
-                <span class="comment-header">{{Note.title}}</span>
-                <button type="button" class="delete" aria-label="Delete" data-id="{{Note._id}}">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </p>
-              <p class="comment-body">{{Note.body}}</p>
-              <p class="comment-date text-muted" id="hb-content">{{moment Note.commentDate "DD MMMM YYYY, h:mma"}}</p>
-              <hr> {{/each}}
-              <form>
-                <div class="form-group">
-                  <label for="new-title">Title</label>
-                  <input type="text" class="form-control" id="new-title" placeholder="Title">
-                </div>
-                <div class="form-group">
-                  <label for="new-body" class="col-form-label">Your Comment:</label>
-                  <textarea class="form-control" id="new-body"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger save-comment" data-id="{{_id}}">Make comment</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End comments modal -->
+      <button type="button" class="btn btn-warning article-button" data-id="{{_id}}">View Comments ({{notes.length}})</button>
     </div>
   </div>
   {{/each}}
