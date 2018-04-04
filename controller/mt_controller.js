@@ -68,7 +68,7 @@ router.get("/", function (req, res) {
 router.get("/comments", function (req, res) {
   db.Article
     .find({}).
-    where("notes").exists().ne(null).
+    where("notes").exists().ne([]).
     limit(20).
     sort({ postDate: -1 })
     .then(function (dbArticle) {
