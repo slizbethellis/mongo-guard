@@ -20,16 +20,10 @@
         <h1 class="display-4">mongo-technica</h1>
         <p class="small">MTH-MS1</p>
         <p class="lead">Scrape articles from Ars Technica and comment on them.</p>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-info btn-sm active">
-            <input type="radio" name="options" id="scrape" autocomplete="off" checked> Scrape New Articles
-          </label>
-          <label class="btn btn-secondary btn-sm">
-            <input type="radio" name="options" id="all-articles" autocomplete="off"> All Articles
-          </label>
-          <label class="btn btn-secondary btn-sm">
-            <input type="radio" name="options" id="commented-articles" autocomplete="off"> Articles with Comments
-          </label>
+        <div class="btn-group" aria-label="action-buttons">
+          <button type="button" class="btn btn-info btn-sm active" id="scrape"> Scrape New Articles</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="all-articles"> All Articles</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="commented-articles"> Articles with Comments</button>
         </div>
       </div>
     </div>

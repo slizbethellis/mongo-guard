@@ -30,11 +30,14 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoTechnica"
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
-  useMongoClient: true
+  //useMongoClient: true
 });
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -71,7 +74,7 @@ app.get("/scrape", function(req, res) {
               });
           }
           else {
-            return res.send("Entry exists.");
+            return res.send("No new articles");
           }
         });
     });
@@ -79,7 +82,7 @@ app.get("/scrape", function(req, res) {
 });
 
 // Route for getting all Articles from the db
-app.get("/articles", function(req, res) {
+app.get("/", function(req, res) {
   db.Article
     .find({}, null, { sort: {postDate:-1} })
     .then(function(dbArticle) {
@@ -92,6 +95,25 @@ app.get("/articles", function(req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
+});
+
+app.get("/comments", function(req, res) {
+  db.Article
+    .findOne({"note": {"$exists": true, "$ne": null}}, null, { sort: {postDate:-1} })
+    .then(function(dbArticle) {
+      if (dbArticle === null) {
+        res.render("index");
+      }
+      else {
+        var hbObject = {
+          Articles: dbArticle
+        };
+        res.render("index", hbObject);
+      }
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
