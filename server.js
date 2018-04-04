@@ -4,10 +4,9 @@ var path = require("path");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-var PORT = 3000;
-
 // Initialize Express
 var app = express();
+var PORT = process.env.PORT || 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
