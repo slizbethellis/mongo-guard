@@ -23,7 +23,7 @@
     <div class="card-body bg-light">
       <p class="card-text">{{Articles.summary}}</p>
       <hr>
-      <p class="card-text article-date text-muted">{{moment Articles.postDate "DD MMMM YYYY, h:mma"}}</p>
+      <p class="card-text article-date text-muted">{{moment Articles.postDate "DD MMMM YYYY, h:mma" local=true}}</p>
     </div>
     <div class="card">
       <div class="card-body">
@@ -35,7 +35,7 @@
           </button>
         </p>
         <p class="comment-body">{{body}}</p>
-        <p class="comment-date text-muted">{{moment commentDate "DD MMMM YYYY, h:mma"}}</p>
+        <p class="comment-date text-muted">{{moment commentDate "DD MMMM YYYY, h:mma" local=true}}</p>
         <hr>{{/each}} {{else}}
         <p>No comments yet.</p>
         {{/if}}

@@ -24,7 +24,7 @@
     <div class="card-body bg-light">
       <p class="card-text">{{summary}}</p>
       <hr>
-      <p class="card-text article-date text-muted">{{moment postDate "DD MMMM YYYY, h:mma"}}</p>
+      <p class="card-text article-date text-muted">{{moment postDate "DD MMMM YYYY, h:mma" local=true}}</p>
       <button type="button" class="btn btn-warning article-button" data-id="{{_id}}">View Comments ({{notes.length}})</button>
     </div>
   </div>

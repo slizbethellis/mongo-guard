@@ -13,6 +13,7 @@ var cheerio = require("cheerio");
 
 // A GET route for scraping the Ars Technica website
 router.get("/scrape", function (req, res) {
+  var updated = false;
   axios.get("https://arstechnica.com/").then(function (response) {
     var $ = cheerio.load(response.data);
     $("article h2").each(function (i, element) {
@@ -33,19 +34,18 @@ router.get("/scrape", function (req, res) {
               .create(result)
               .then(function (dbArticle) {
                 // If we were able to successfully scrape and save an Article, send a message to the client
-                res.send("Scrape Complete");
+                updated = true;
               })
               .catch(function (err) {
                 // If an error occurred, send it to the client
                 res.json(err);
               });
           }
-          else {
-            return res.send("No new articles");
-          }
         });
     });
   });
+  if (updated === true) { res.send("Scrape Complete"); }
+  else { res.send("No new articles."); }
 });
 
 // Route for getting all articles from the db
