@@ -20,7 +20,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoTechnica"
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
-  //useMongoClient: true
+  useNewUrlParser: true
 });
 
 // Set Handlebars.
