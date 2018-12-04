@@ -15,10 +15,10 @@ var cheerio = require("cheerio");
 router.get("/scrape", function (req, res) {
   axios.get("https://arstechnica.com/").then(function (response) {
     var $ = cheerio.load(response.data);
-    $("article h2").each(function (i, element) {
+    $(".article h2").each(function (i, element) {
       // Save an empty result object
       var result = {};
-
+      
       result.title = $(this).children("a").text();
       result.link = $(this).children("a").attr("href");
       result.summary = $(this).siblings(".excerpt").text();
